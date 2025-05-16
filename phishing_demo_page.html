@@ -98,14 +98,9 @@
         if (cookiesData === "") {
             cookiesData = "Nenhum cookie visível para esta página/domínio.";
         } else {
-            // For privacy in demo, let's just show it exists, or a placeholder
-            // cookiesData = "[Dados de cookies seriam exibidos aqui]"; 
+    
         }
         document.getElementById('cookies').textContent = cookiesData;
-
-        // Example of setting a dummy cookie to demonstrate it can be read
-        // You might not want this for a pure 'info leak' demo, but it shows capability
-        // document.cookie = "demoVisitor=true; SameSite=Lax; Secure; path=/";
     </script>
 </body>
 </html>
