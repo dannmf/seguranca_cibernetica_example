@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALERTA!</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1a1a1a;
+            color: #ff0000;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .container {
+            background-color: #000;
+            border: 2px dashed #ff0000;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #ff0000;
+            max-width: 800px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #ff0000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: blink 1s infinite;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #f0a0a0;
+            margin-bottom: 30px;
+        }
+        p {
+            color: #00ff00; /* Green text for 'data' */
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-align: left;
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+        strong {
+            color: #ffff00; /* Yellow for labels */
+        }
+        .data-block {
+            background-color: #101010;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border: 1px solid #333;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>VOCÊ FOI HACKEADO!</h1>
+        <h2>Seus dados foram expostos!</h2>
+
+        <div class="data-block">
+            <p><strong>User Agent:</strong> <span id="userAgent"></span></p>
+            <p><strong>Idioma do Navegador:</strong> <span id="language"></span></p>
+            <p><strong>Plataforma (SO):</strong> <span id="platform"></span></p>
+            <p><strong>Resolução da Tela:</strong> <span id="resolution"></span></p>
+            <p><strong>Cookies Habilitados:</strong> <span id="cookiesEnabled"></span></p>
+            <p><strong>Data/Hora do Acesso:</strong> <span id="accessTime"></span></p>
+            <p><strong>Seus Cookies (visíveis para este domínio):</strong> <span id="cookies"></span></p>
+        </div>
+
+        <div class="footer">
+            <p>(Esta é uma página de demonstração para fins educacionais sobre os perigos do phishing e como simples informações do seu navegador podem ser acessadas.)</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('userAgent').textContent = navigator.userAgent || 'Não disponível';
+        document.getElementById('language').textContent = navigator.language || 'Não disponível';
+        document.getElementById('platform').textContent = navigator.platform || 'Não disponível';
+        document.getElementById('resolution').textContent = screen.width + 'x' + screen.height || 'Não disponível';
+        document.getElementById('cookiesEnabled').textContent = navigator.cookieEnabled ? 'Sim' : 'Não';
+        document.getElementById('accessTime').textContent = new Date().toLocaleString('pt-BR');
+        
+        let cookiesData = document.cookie;
+        if (cookiesData === "") {
+            cookiesData = "Nenhum cookie visível para esta página/domínio.";
+        } else {
+            // For privacy in demo, let's just show it exists, or a placeholder
+            // cookiesData = "[Dados de cookies seriam exibidos aqui]"; 
+        }
+        document.getElementById('cookies').textContent = cookiesData;
+
+        // Example of setting a dummy cookie to demonstrate it can be read
+        // You might not want this for a pure 'info leak' demo, but it shows capability
+        // document.cookie = "demoVisitor=true; SameSite=Lax; Secure; path=/";
+    </script>
+</body>
+</html>
